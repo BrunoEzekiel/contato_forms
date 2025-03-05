@@ -74,12 +74,18 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),  # Variável de ambiente para o nome do banco
+        'USER': os.getenv('DB_USER'),  # Variável de ambiente para o usuário
+        'PASSWORD': os.getenv('DB_PASSWORD'),  # Variável de ambiente para a senha
+        'HOST': os.getenv('DB_HOST', 'localhost'),  # Variável de ambiente para o host
+        'PORT': os.getenv('DB_PORT', '5432'),  # Variável de ambiente para a porta
     }
 }
+
 
 
 # Password validation
